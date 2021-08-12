@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div>
+      <%= @post.user.nickname %>
+      <%= @post.content %>
+      <%= @post.image %>
+      <% @tags.each do |tag| %>
+        <%= tag.name %>
+      <% end %>
+    </div>
+  </div>
+</div>

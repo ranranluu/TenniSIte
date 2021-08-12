@@ -3,13 +3,13 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
-  
+
+
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followers, through: :reverse_of_relationships, source: :follower
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followings, through: :relationships, source: :followed
-  
+
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end
@@ -21,14 +21,14 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
-  
+
   has_many :posts, dependent: :destroy
-  attachment :image
-  
+  attachment :profile_image
+
   has_many :user_rooms
   has_many :chats
-  
 
-  
-  
+
+
+
 end
