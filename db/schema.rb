@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_10_052220) do
+ActiveRecord::Schema.define(version: 2021_08_12_050544) do
 
   create_table "chats", force: :cascade do |t|
     t.integer "user_id"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2021_08_10_052220) do
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
     t.text "content", null: false
-    t.string "image"
+    t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2021_08_10_052220) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "nickname", null: false
-    t.string "profile_image"
+    t.string "profile_image_id"
     t.text "introduction"
     t.string "playstyle"
     t.string "like_player"
