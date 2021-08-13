@@ -14,10 +14,19 @@
         <p>例：音楽 文芸 スポーツ</p>
         <%= f.text_field :name %>
         <%= f.submit "投稿する" %>
+      <% end %><br>
+      投稿一覧<br>
+      <% @posts.each do |post| %>
+        <%= post.content %>
+        <%= post.image %>
+        <% @tag_list.each do |list| %>
+          <%= list.name %>
+        <% end %>
+        <div id="post_<%= post.id %>">
+          <%= render partial: 'likes/like', locals: {post:post} %>
+        </div><br>
+
       <% end %>
-      投稿一覧
-      - @posts.each do |post|
-          = link_to post.content, post
     </div>
   </div>
 </div>

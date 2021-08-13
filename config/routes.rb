@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   end
 
   resources :posts, only: [:index, :show, :create, :update, :destroy, :edit] do
-    resource :favorites, only: [:create, :destroy]
+    resource :likes, only: [:create, :destroy]
   end
 
   resources :tags, except: [:index, :create, :new, :edit, :show, :update, :destroy] do
