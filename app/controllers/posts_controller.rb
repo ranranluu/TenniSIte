@@ -46,9 +46,9 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    book = Book.find(params[:id])
-    book.destroy
-    redirect_to books_path
+    post = Post.find(params[:id])
+    post.destroy
+    redirect_to posts_path
   end
   
   def search

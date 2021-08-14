@@ -19,3 +19,12 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+
+$(function() {
+    $('.slidebar').slick({
+        dots: true,
+        autoplay: true,
+        autoplaySpeed: 600
+    });
+});
