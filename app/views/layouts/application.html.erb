@@ -4,12 +4,87 @@
     <title>Tennisite</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info p-4">
+      <%= link_to image_tag("logo.png", class: "image", size: "80x80"), "/" %>
+      <a class="navbar-brand ml-3" href="/"><strong>TenniSite</strong></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <% if user_signed_in? %>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      <% else %>
+      <% end %>
+
+    </nav>
+    <div class="row">
+      <div class="col-2 sidebar list-group text-center">
+        <% if user_signed_in? %>
+          <li class="list-group-item"><%= link_to "ユーザー一覧", users_path %></li>
+          <li class="list-group-item"><%= link_to "フォロー一覧", user_followings_path(current_user) %></li>
+          <li class="list-group-item"><%= link_to "フォロワー一覧", user_followers_path(current_user) %></li>
+          <li class="list-group-item"><%= link_to "投稿一覧", posts_path %></li>
+          <li class="list-group-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li class="list-group-item"><%= link_to "ログイン", user_session_path %></li>
+          <li class="list-group-item"><%= link_to "新規登録", new_user_registration_path %></li>
+        <% end %>
+
+        <table class="table">
+          <h4>プロフィール</h4>
+          <thead>
+            <tr>
+              <%= attachment_image_tag current_user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "100x100" %>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>nickname</th>
+              <th><%= current_user.nickname %></th>
+            </tr>
+            <tr>
+              <th>Introduction</th>
+              <th><%= current_user.introduction %></th>
+            </tr>
+            <tr>
+              <th>playstyle</th>
+              <th><%= current_user.playstyle %></th>
+            </tr>
+            <tr>
+              <th>likeplayer</th>
+              <th><%= current_user.like_player %></th>
+            </tr>
+            <tr>
+              <th>likebrand</th>
+              <th><%= current_user.like_brand %></th>
+            </tr>
+            <tr>
+              <th><strong>follows</strong></th>
+              <th><%= current_user.followings.count %></th>
+            </tr>
+            <tr>
+              <th><strong>followers</strong></th>
+              <th><%= current_user.followers.count %></th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-7 offset-1">
+        <body>
+          <%= yield %>
+        </body>
+      </div>
+    </div>
+  </div>
 </html>

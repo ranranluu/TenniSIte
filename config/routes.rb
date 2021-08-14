@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   resources :tags, except: [:index, :create, :new, :edit, :show, :update, :destroy] do
     get 'posts' => 'posts#search'
   end
+
+  resources :chats, only: [:show, :create]
 end
