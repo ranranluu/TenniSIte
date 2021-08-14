@@ -1,1 +1,18 @@
 hello
+
+<% if user_signed_in? %>
+<h2>新規投稿</h2>
+  <% @posts.each do |post| %>
+    <%= post.user.nickname %>
+    <%= post.content %>
+    <% post.tags.each do |tag| %>
+      <%= tag.name %>
+    <% end %><br>
+  <% end %>
+<% else %>
+<div class="slidebar">
+  <div class="picture"><img class="image" src="assets/picture1.jpg"></div>
+  <div class="picture"><img class="image" src="assets/picture2.jpg"></div>
+  <div class="picture"><img class="image" src="assets/picture3.jpg"></div>
+</div>
+<% end %>
