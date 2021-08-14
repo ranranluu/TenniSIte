@@ -40,4 +40,4 @@ https://docs.google.com/spreadsheets/d/1ToovhBkLonB-rjFnaDeEdRCV-0OIXEuXso4ieSwr
 - IDE：Cloud9
 
 ## 使用素材
-あれば追加
+・Hatchfulの無料ロゴメーカー(https://hatchful.shopify.com/ja/)
