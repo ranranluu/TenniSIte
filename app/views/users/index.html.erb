@@ -26,3 +26,19 @@
     <% end %>
   </tbody>
 </table>
+
+
+<div class="row mx-auto">
+    <div class="search mx-auto">
+      <%= form_with model: User.new, method: :get, class: "search__form" do |f| %>
+        <%= f.text_field :keyword, required: true, class: "search__form__input searchTerm" %>
+        <button type="submit" class="searchButton">
+        <i class="fa fa-search"></i>
+        </button>
+      <% end %>
+    </div>
+  </div>
+  <div id="index">
+    <%= render "users/index", users: @users %>
+  </div>
+</div>

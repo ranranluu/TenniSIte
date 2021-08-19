@@ -19,7 +19,7 @@
       <% @posts.each do |post| %>
         <%= post.content %>
         <%= post.image %>
-        <% @tag_list.each do |list| %>
+        <% post.tags.each do |list| %>
           <%= list.name %>
         <% end %>
         <div id="post_<%= post.id %>">

@@ -1,6 +1,14 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
+    if params[:user].present?
+      if params[:user].empty?
+        @users = User.all
+      else
+        @users = User.where('nickname LIKE(?)', "%#{params[:user][:keyword]}%")
+      end
+    else
+      @users = User.all
+    end
   end
 
   def show
