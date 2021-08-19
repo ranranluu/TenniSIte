@@ -16,3 +16,13 @@
  @import "bootstrap";
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
+
+.sidebar_fixed {
+ position: sticky;
+ top: 60px;
+}
+
+.slidebar {
+  height: 550px;
+  width: 100%;
+}

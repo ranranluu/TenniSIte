@@ -28,4 +28,14 @@ class Post < ApplicationRecord
       self.tags << new_tag
     end
   end
+
+  def self.sort(selection)
+    case selection
+    when 'new'
+      return all.order(created_at: :DESC)
+    when 'likes'
+      return find(Like.group(:post_id).order(Arel.sql('count(post_id) desc')).pluck(:post_id))
+    end
+  end
+
 end

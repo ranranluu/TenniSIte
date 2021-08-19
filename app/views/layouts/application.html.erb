@@ -4,12 +4,90 @@
     <title>Tennisite</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info p-4">
+      <%= link_to image_tag("logo.png", class: "top_image", size: "80x80"), "/" %>
+      <a class="navbar-brand ml-3" href="/"><strong>TenniSite</strong></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <% if user_signed_in? %>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <%= form_with url:search_path, method: :get, local: :true do |f| %>
+            <%= f.text_field 'search[value]' %>
+            <%= f.select 'search[model]', options_for_select({"ユーザー" => "user", "投稿" => "post"}) %>
+            <%= f.select 'search[how]', options_for_select({"完全一致" => "match", "部分一致" => "partical"}) %>
+            <%= f.submit '検索' %>
+        <% end %>
+        </div>
+      <% else %>
+      <% end %>
+
+    </nav>
+    <div class="row">
+      <div class="col-3 sidebar list-group text-center">
+        <% if user_signed_in? %>
+          <li class="list-group-item"><%= link_to "ユーザー一覧", users_path %></li>
+          <li class="list-group-item"><%= link_to "フォロー一覧", user_followings_path(current_user) %></li>
+          <li class="list-group-item"><%= link_to "フォロワー一覧", user_followers_path(current_user) %></li>
+          <li class="list-group-item"><%= link_to "投稿一覧", posts_path %></li>
+          <li class="list-group-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li class="list-group-item"><%= link_to "ログイン", user_session_path %></li>
+          <li class="list-group-item"><%= link_to "新規登録", new_user_registration_path %></li>
+          <li class="list-group-item"><%= link_to "TenniSiteについて", about_path %></li>
+        <% end %>
+        <% if user_signed_in? %>
+        <table class="table">
+          <h4>プロフィール</h4>
+          <div class="mx-auto"><%= attachment_image_tag current_user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "150x150" %></div>
+          <tbody>
+            <tr>
+              <th>nickname</th>
+              <th><%= current_user.nickname %></th>
+            </tr>
+            <tr>
+              <th>Introduction</th>
+              <th><%= current_user.introduction %></th>
+            </tr>
+            <tr>
+              <th>playstyle</th>
+              <th><%= current_user.playstyle %></th>
+            </tr>
+            <tr>
+              <th>likeplayer</th>
+              <th><%= current_user.like_player %></th>
+            </tr>
+            <tr>
+              <th>likebrand</th>
+              <th><%= current_user.like_brand %></th>
+            </tr>
+            <tr>
+              <th>follows</th>
+              <th><%= current_user.followings.count %></th>
+            </tr>
+            <tr>
+              <th>followers</th>
+              <th><%= current_user.followers.count %></th>
+            </tr>
+          </tbody>
+        </table>
+        <% end %>
+      </div>
+
+      <div class="col-8 ml-5">
+        <body>
+          <%= yield %>
+        </body>
+      </div>
+    </div>
+  </div>
 </html>

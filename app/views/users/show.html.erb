@@ -1,9 +1,9 @@
 <h2>User info</h2>
 <table class="table">
   <thead>
-    <tr>
+
       <%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "100x100" %>
-    </tr>
+
   </thead>
   <tbody>
     <tr>
@@ -57,7 +57,7 @@
 
     <tr>
       <th colspan="2">
-        <% if current_user != @user  && current_user.following?(@user) && user.following?(current_user) %>
+        <% if current_user != @user  && current_user.following?(@user) && @user.following?(current_user) %>
           <%= link_to 'チャットする', chat_path(@user.id) %>
         <% end %>
       </th>
