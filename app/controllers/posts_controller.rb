@@ -15,8 +15,8 @@ class PostsController < ApplicationController
 
   def index
     @user = current_user
-    @tag_list = Tag.all             
-    @posts = Post.all                
+    @tag_list = Tag.all
+    @posts = Post.all
     @post = current_user.posts.new
   end
 
@@ -41,7 +41,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])  
+    @post = Post.find(params[:id])
     @tags = @post.tags
   end
 
@@ -50,16 +50,17 @@ class PostsController < ApplicationController
     post.destroy
     redirect_to posts_path
   end
-  
-  def search
+
+  def tagsearch
     @tag = Tag.find(params[:tag_id])  #クリックしたタグを取得
     @posts = @tag.posts.all           #クリックしたタグに紐付けられた投稿を全て表示
   end
+
+
 
   private
   def post_params
     params.require(:post).permit(:content, :image)
   end
-
 
 end

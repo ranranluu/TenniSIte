@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   root 'homes#top'
   get '/about' => 'homes#about'
+  get '/search' => 'search#search'
 
   resources :users, only: [:show, :edit, :update, :index] do
     resource :relationships, only: [:create, :destroy]
@@ -20,7 +21,7 @@ Rails.application.routes.draw do
   end
 
   resources :tags, except: [:index, :create, :new, :edit, :show, :update, :destroy] do
-    get 'posts' => 'posts#search'
+    get 'posts' => 'posts#tagsearch'
   end
 
   resources :chats, only: [:show, :create]

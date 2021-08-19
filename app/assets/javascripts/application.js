@@ -20,7 +20,6 @@
 //= require turbolinks
 //= require_tree .
 
-
 $(function() {
     $('.slidebar').slick({
         dots: true,
@@ -28,3 +27,4 @@ $(function() {
         autoplaySpeed: 600
     });
 });
+
