@@ -16,6 +16,7 @@ class ChatsController < ApplicationController
     end
     @chats = @room.chats
     @chat = Chat.new(room_id: @room.id)
+    @newpost = current_user.posts.new
   end
 
   def create
