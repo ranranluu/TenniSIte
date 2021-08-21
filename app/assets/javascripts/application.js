@@ -20,11 +20,12 @@
 //= require turbolinks
 //= require_tree .
 
-$(function() {
+$(document).on('turbolinks:load', function() {
+  $(function() {
     $('.slidebar').slick({
-        dots: true,
         autoplay: true,
         autoplaySpeed: 600
     });
+  });
 });
 

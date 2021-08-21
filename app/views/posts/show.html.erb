@@ -7,6 +7,9 @@
       <% @tags.each do |tag| %>
         <%= tag.name %>
       <% end %>
+      <div id="post_<%= @post.id %>">
+        <%= render partial: 'likes/like', locals: {post:@post} %>
+      </div><br>
     </div>
   </div>
 </div>

@@ -13,16 +13,44 @@
  *= require_tree .
  *= require_self
  */
- @import "bootstrap";
+
+
+ @import 'bootstrap';
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
+
+body {
+  margin: 0;
+  padding: 0;
+}
 
 .sidebar_fixed {
  position: sticky;
  top: 60px;
 }
 
-.slidebar {
-  height: 550px;
+.picture {
+  height: 600px;
   width: 100%;
+}
+
+.main-container {
+  position: relative;
+  background-image: url(top.jpg);
+  background-position: center;
+  background-size: 100%;
+  background-attachment: fixed;
+  background-width: 100%;
+  background-height: 100vh;
+  color: white;
+}
+
+.main-container::before {
+  background-color: rgba(0,0,0,0.6);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: ' ';
 }

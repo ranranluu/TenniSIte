@@ -1,0 +1,26 @@
+<div class="row result">
+  <div class="col-11 mx-auto">
+    <div class="d-flex align-content-start flex-wrap mt-4">
+      <% if posts.present? %>
+      <% @posts.each do |post| %>
+      <div class="mx-5 my-4 out-line">
+        <%= link_to post_path(post.id) do %>
+          <%= post.content %><br>
+          <% if post.image.present? %>
+            <%= attachment_image_tag post, :image %><br>
+          <% end %>
+          <% post.tags.each do |list| %>
+            <%= list.name %>
+          <% end %>
+        <% end %>
+        <div id="post_<%= post.id %>">
+          <%= render partial: 'likes/like', locals: {post:post} %>
+        </div><br>
+      </div>
+      <% end %>
+      <% else %>
+        <p class="mx-auto white">検索に合致するものはありません</p>
+      <% end %>
+    </div>
+  </div>
+</div>
