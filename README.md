@@ -40,5 +40,6 @@ https://docs.google.com/spreadsheets/d/1ToovhBkLonB-rjFnaDeEdRCV-0OIXEuXso4ieSwr
 - IDE：Cloud9
 
 ## 使用素材
-・Hatchfulの無料ロゴメーカー(https://hatchful.shopify.com/ja/)
-・photo-AC（https://www.photo-ac.com/）
+- Hatchfulの無料ロゴメーカー(https://hatchful.shopify.com/ja/)
+- photo-AC（https://www.photo-ac.com/）
+- O-DAN(https://o-dan.net/ja/)
