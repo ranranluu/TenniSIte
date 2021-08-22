@@ -1,9 +1,8 @@
 class PostsController < ApplicationController
-  
-  def new
-    @post = Post.new
-  end
 
+  def new
+    @post = current_user.posts.new
+  end
 
   def create
     @post = Post.new(post_params)
@@ -36,18 +35,15 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
-    if @post.user_id == current_user.id
-      render "edit"
-    else
-      redirect_to posts_path
-    end
-    @newpost = current_user.posts.new
+    @tag_list = @post.tags.pluck(:name).join(",")
   end
 
   def update
     @post = Post.find(params[:id])
     @post.user_id = current_user.id
+    tag_list = params[:post][:name].split(nil)
     if @post.update(post_params)
+      @post.save_tag(tag_list)
       flash[:notice]="You have updated post successfully."
       redirect_to post_path(@post.id)
     else
@@ -59,7 +55,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @tags = @post.tags
-    @newpost = current_user.posts.new
+    @post_comment = PostComment.new
   end
 
   def destroy

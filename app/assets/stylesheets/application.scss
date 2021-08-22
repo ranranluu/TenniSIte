@@ -19,10 +19,7 @@
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
 
-body {
-  margin: 0;
-  padding: 0;
-}
+
 
 .sidebar_fixed {
  position: sticky;
@@ -34,20 +31,20 @@ body {
   width: 100%;
 }
 
-.main-container {
+body {
   position: relative;
   background-image: url(top.jpg);
-  background-position: center;
-  background-size: 100%;
+  background-position: center center;
+  background-size: cover;
   background-attachment: fixed;
-  background-width: 100%;
-  background-height: 100vh;
+  background-repeat:  no-repeat;
   color: white;
+  height: 100vh;
 }
 
-.main-container::before {
+body::before {
   background-color: rgba(0,0,0,0.6);
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;

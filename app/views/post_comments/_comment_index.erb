@@ -1,0 +1,18 @@
+<table class="table">
+  <% post.post_comments.each do |post_comment| %>
+    <tr>
+      <td>
+        <%= attachment_image_tag post_comment.user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "50x50" %>
+        <%= post_comment.user.nickname %>
+      </td>
+      <td>
+        <%= post_comment.comment %>
+      </td>
+      <td>
+        <% if post_comment.user_id == current_user.id %>
+          <%= link_to "Destroy", post_post_comment_path(post, post_comment.id), method: :delete, class: "btn btn-danger", remote: true %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
