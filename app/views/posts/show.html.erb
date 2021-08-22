@@ -10,6 +10,19 @@
       <div id="post_<%= @post.id %>">
         <%= render partial: 'likes/like', locals: {post:@post} %>
       </div><br>
+
+       <td id="comment-count">コメント数:<%= @post.post_comments.count %></td>
+          <% if @post.user_id == current_user.id %>
+            <td><%= link_to "Edit", edit_post_path(@post), class: "btn btn-success" %></td>
+            <td><%= link_to "Destroy", post_path(@post), method: :delete, data: {confirm: "本当に消しますか？"}, class: "btn btn-danger" %></td>
+          <% end %>
+        </tr>
+      </table>
+      <div id="comment-index">
+        <%= render partial: 'post_comments/comment_index', locals: {post: @post} %>
+      </div>
+
+      <%= render partial: 'post_comments/comment_form', locals: {post: @post, post_comment: @post_comment} %>
     </div>
   </div>
 </div>

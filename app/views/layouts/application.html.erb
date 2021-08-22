@@ -14,29 +14,28 @@
   <body>
     <div class="main-container">
       <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-4">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-4">
         <%= link_to image_tag("logo.png", class: "top_image", size: "80x80"), "/" %>
-        <a class="navbar-brand ml-3" href="/"><strong>TenniSite</strong></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav ml-auto">
-          <% if user_signed_in? %>
-            <li class="nav-link text-light">welcome,<%= current_user.nickname %>!</li>
-            <li><%= link_to 'mypage', user_path(current_user.id), class: 'nav-link text-light' %></li>
-            <li><%= link_to 'posts', posts_path, class: 'nav-link text-light' %></li>
-            <li><%= link_to 'users', users_path, class: 'nav-link text-light' %></li>
-            <li><%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'nav-link text-light' %></li>
-          <% else %>
-            <li><%= link_to 'About', about_path, class: 'nav-link text-light' %></li>
-            <li><%= link_to 'login', user_session_path, class: 'nav-link text-light' %></li>
-            <li><%= link_to 'signup', new_user_registration_path, class: 'nav-link text-light' %></li>
-          <% end %>
-          </ul>
-        </div>
-
-      </nav>
+          <a class="navbar-brand ml-3" href="/"><strong>TenniSite</strong></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+              <li class="nav-link text-light">welcome,<%= current_user.nickname %>!</li>
+              <li><%= link_to 'mypage', user_path(current_user.id), class: 'nav-link text-light' %></li>
+              <li><%= link_to 'posts', posts_path, class: 'nav-link text-light' %></li>
+              <li><%= link_to 'users', users_path, class: 'nav-link text-light' %></li>
+              <li><%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'nav-link text-light' %></li>
+            <% else %>
+              <li><%= link_to 'About', about_path, class: 'nav-link text-light' %></li>
+              <li><%= link_to 'login', user_session_path, class: 'nav-link text-light' %></li>
+              <li><%= link_to 'signup', new_user_registration_path, class: 'nav-link text-light' %></li>
+            <% end %>
+            </ul>
+          </div>
+        </nav>
       <div class="row">
         <div class="col-3 sidebar list-group text-center">
           <% if user_signed_in? %>
