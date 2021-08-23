@@ -23,66 +23,100 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
-              <li class="nav-link text-light">welcome,<%= current_user.nickname %>!</li>
-              <li><%= link_to 'mypage', user_path(current_user.id), class: 'nav-link text-light' %></li>
-              <li><%= link_to 'posts', posts_path, class: 'nav-link text-light' %></li>
-              <li><%= link_to 'users', users_path, class: 'nav-link text-light' %></li>
-              <li><%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'nav-link text-light' %></li>
+              <li class="nav-link text-light">
+                <strong>Welcome, <%= current_user.nickname %> !</strong>
+              </li>
+              <li>
+                <%= link_to user_path(current_user.id), class: 'nav-link text-light' do %>
+                  <i class="far fa-user-circle"></i>Mypage
+                <% end %>
+              </li>
+              <li>
+                <%= link_to posts_path, class: 'nav-link text-light' do %>
+                  <i class="fas fa-comment-alt"></i>Posts
+                <% end %>
+              </li>
+              <li>
+                <%= link_to users_path, class: 'nav-link text-light' do %>
+                  <i class="fas fa-users"></i>Users
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light' do %>
+                  <i class="fas fa-sign-out-alt"></i>Logout
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_post_path, class: 'nav-link text-light' do %>
+                  <i class="fas fa-comment"></i>Newpost
+                <% end %>
+              </li>
             <% else %>
-              <li><%= link_to 'About', about_path, class: 'nav-link text-light' %></li>
-              <li><%= link_to 'login', user_session_path, class: 'nav-link text-light' %></li>
-              <li><%= link_to 'signup', new_user_registration_path, class: 'nav-link text-light' %></li>
+              <li>
+                <%= link_to about_path, class: 'nav-link text-light' do %>
+                  <i class="fas fa-link"></i>About
+                <% end %>
+              </li>
+              <li>
+                <%= link_to user_session_path, class: 'nav-link text-light' do %>
+                  Login <i class="fas fa-sign-in-alt"></i>
+                <% end %>
+              </li>
+              <li><%= link_to 'Signup', new_user_registration_path, class: 'nav-link text-light' %></li>
             <% end %>
             </ul>
           </div>
         </nav>
-      <div class="row">
-        <div class="col-3 sidebar list-group text-center">
-          <% if user_signed_in? %>
+        <div class="row">
+        <% if user_signed_in? %>
+        <div class="col-3 sidebar list-group text-center ml-5">
           <table class="table table-dark text-light">
             <h2>Profile</h2>
-            <div class="mx-auto"><%= attachment_image_tag current_user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "250x250" %></div>
+            <div class="mx-auto mb-3"><%= attachment_image_tag current_user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "200x200" %></div>
             <tbody>
               <tr>
-                <th>nickname</th>
+                <th>Nickname</th>
                 <th><%= current_user.nickname %></th>
               </tr>
               <tr>
-                <th>introduction</th>
+                <th>Introduction</th>
                 <th><%= current_user.introduction %></th>
               </tr>
               <tr>
-                <th>playstyle</th>
+                <th>Playstyle</th>
                 <th><%= current_user.playstyle %></th>
               </tr>
               <tr>
-                <th>likeplayer</th>
+                <th>Likeplayer</th>
                 <th><%= current_user.like_player %></th>
               </tr>
               <tr>
-                <th>likebrand</th>
+                <th>Likebrand</th>
                 <th><%= current_user.like_brand %></th>
               </tr>
               <tr>
-                <th>follows</th>
+                <th>Follows</th>
                 <th><%= link_to current_user.followings.count , user_followings_path(current_user) %></th>
               </tr>
               <tr>
-                <th>followers</th>
+                <th>Followers</th>
                 <th><%= link_to current_user.followers.count, user_followers_path(current_user) %></th>
               </tr>
             </tbody>
           </table>
-          <h2><%= link_to "New Post", new_post_path %></h2>
-          <% end %>
-
         </div>
-
         <div class="col-7 ml-5">
           <body>
             <%= yield %>
           </body>
         </div>
+        <% else %>
+        <div class="col-8 offset-2">
+          <body>
+            <%= yield %>
+          </body>
+        </div>
+        <% end %>
       </div>
     </div>
   </div>
