@@ -1,8 +1,6 @@
-hello
-
 <% if user_signed_in? %>
 <h2>新規投稿</h2>
-  <% @posts.each do |post| %>
+  <% @likeposts.each do |post| %>
     <%= post.user.nickname %>
     <%= post.content %>
     <% post.tags.each do |tag| %>
