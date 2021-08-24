@@ -8,9 +8,21 @@
     <% end %><br>
   <% end %>
 <% else %>
-<div class="slidebar">
-  <div class="picture"><img src="assets/picture1.jpg", class="picture"></div>
+<h1 class="text-center mt-3" style="color:orange"><strong>Welocome to TenniSite!!</strong></h1>
+<div class="slidebar mt-4 col-8 offset-2">
   <div class="picture"><img src="assets/picture2.jpg", class="picture"></div>
   <div class="picture"><img src="assets/picture3.jpg", class="picture"></div>
+  <div class="picture"><img src="assets/picture1.jpg", class="picture"></div>
+  <div class="picture"><img src="assets/picture4.jpg", class="picture"></div>
+  <div class="picture"><img src="assets/picture5.jpg", class="picture"></div>
+</div>
+<h4 class="mt-4 text-center">
+  This site is a gathering place for tennis lovers.<br>
+  Let's share the excitement of tennis or your tennislife.
+</h4>
+<div class="text-center">
+  <%= link_to "About TenniSite", about_path, class: "btn btn-dark", style: "color:orange" %>
+  <%= link_to "Sign up", new_user_registration_path, class: "btn btn-dark", style: "color:yellow" %>
+  <%= link_to "Log in", new_user_session_path, class: "btn btn-dark", style: "color:pink" %>
 </div>
 <% end %>

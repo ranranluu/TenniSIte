@@ -32,23 +32,23 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to posts_path, class: 'nav-link text-light' do %>
-                  <i class="fas fa-comment-alt"></i>Posts
-                <% end %>
-              </li>
-              <li>
                 <%= link_to users_path, class: 'nav-link text-light' do %>
                   <i class="fas fa-users"></i>Users
                 <% end %>
               </li>
               <li>
-                <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light' do %>
-                  <i class="fas fa-sign-out-alt"></i>Logout
+                <%= link_to posts_path, class: 'nav-link text-light' do %>
+                  <i class="fas fa-comment-alt"></i>Posts
                 <% end %>
               </li>
               <li>
                 <%= link_to new_post_path, class: 'nav-link text-light' do %>
-                  <i class="fas fa-comment"></i>Newpost
+                  <i class="fas fa-comment-medical"></i>Newpost
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light' do %>
+                  <i class="fas fa-sign-out-alt"></i>Logout
                 <% end %>
               </li>
             <% else %>
@@ -59,7 +59,7 @@
               </li>
               <li>
                 <%= link_to user_session_path, class: 'nav-link text-light' do %>
-                  Login <i class="fas fa-sign-in-alt"></i>
+                  <i class="fas fa-sign-in-alt"></i>Login
                 <% end %>
               </li>
               <li><%= link_to 'Signup', new_user_registration_path, class: 'nav-link text-light' %></li>
@@ -69,7 +69,7 @@
         </nav>
         <div class="row">
         <% if user_signed_in? %>
-        <div class="col-3 sidebar list-group text-center ml-5">
+        <div class="col-2 sidebar list-group text-center ml-5">
           <table class="table table-dark text-light">
             <h2>Profile</h2>
             <div class="mx-auto mb-3"><%= attachment_image_tag current_user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "200x200" %></div>
@@ -105,7 +105,7 @@
             </tbody>
           </table>
         </div>
-        <div class="col-7 ml-5">
+        <div class="col-8 ml-5">
           <body>
             <%= yield %>
           </body>

@@ -21,16 +21,15 @@ class PostsController < ApplicationController
   def index
     if params[:post].present?
       if params[:post].empty?
-        @posts = Post.all
+        @posts = Post.all.order(created_at: :desc)
       else
         @posts = Post.where('content LIKE(?)', "%#{params[:post][:keyword]}%")
       end
     else
-      @posts = Post.all
+      @posts = Post.all.order(created_at: :desc)
     end
     @user = current_user
     @tag_list = Tag.all
-    @post = current_user.posts.new
   end
 
   def edit
@@ -67,7 +66,6 @@ class PostsController < ApplicationController
   def tagsearch
     @tag = Tag.find(params[:tag_id])  #クリックしたタグを取得
     @posts = @tag.posts.all           #クリックしたタグに紐付けられた投稿を全て表示
-    @newpost = current_user.posts.new
   end
 
 
