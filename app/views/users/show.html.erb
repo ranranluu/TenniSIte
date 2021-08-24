@@ -38,11 +38,11 @@
       <th colspan="2">
         <% if current_user.following?(@user) %>
           <%= link_to user_relationships_path(@user.id), method: :delete, class: "btn btn-danger btn-block" do %>
-            <i class="fas fa-user-times"></i>
+            <i class="fas fa-user-times"></i> Unfollow
           <% end %>
         <% else %>
           <%= link_to user_relationships_path(@user.id), method: :post, class: "btn btn-success btn-block" do %>
-            <i class="fas fa-user-plus"></i>
+            <i class="fas fa-user-plus"></i> Follow
           <% end %>
         <% end %>
       </th>
@@ -57,12 +57,14 @@
       </th>
     </tr>
     <% end %>
+    <% if current_user != @user  && current_user.following?(@user) && @user.following?(current_user) %>
     <tr>
       <th colspan="2">
-        <% if current_user != @user  && current_user.following?(@user) && @user.following?(current_user) %>
-          <%= link_to 'Start Chat', chat_path(@user.id), class: "btn btn-primary btn-lg" %>
+        <%= link_to chat_path(@user.id), class: "btn btn-primary btn-block" do %>
+          <i class="far fa-comments"></i> Start chat with <%= @user.nickname %>
         <% end %>
       </th>
     </tr>
+    <% end %>
   </tbody>
 </table>

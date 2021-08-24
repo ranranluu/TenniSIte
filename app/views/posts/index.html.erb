@@ -1,6 +1,6 @@
 <h2>Posts</h2>
 <div class="row mx-auto">
-  <div class="search mx-auto">
+  <div class="search mx-auto mb-3">
     <%= form_with model: Post.new, method: :get, class: "search__form" do |f| %>
       <%= f.text_field :keyword, required: true, class: "search__form__input searchTerm" %>
       <button type="submit" class="searchButton">
@@ -8,7 +8,7 @@
       </button>
     <% end %>
   </div>
-  <div id="index">
-    <%= render "posts/index", posts: @posts %>
-  </div>
+</div>
+<div id="index" class="mx-auto">
+  <%= render "posts/index", posts: @posts %>
 </div>

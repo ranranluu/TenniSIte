@@ -24,7 +24,7 @@ $(document).on('turbolinks:load', function() {
   $(function() {
     $('.slidebar').slick({
         autoplay: true,
-        autoplaySpeed: 600
+        autoplaySpeed: 800
     });
   });
 });
