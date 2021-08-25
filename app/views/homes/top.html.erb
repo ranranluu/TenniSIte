@@ -1,28 +1,31 @@
 <% if user_signed_in? %>
-<h2>新規投稿</h2>
-  <% @likeposts.each do |post| %>
-    <%= post.user.nickname %>
-    <%= post.content %>
-    <% post.tags.each do |tag| %>
-      <%= tag.name %>
-    <% end %><br>
-  <% end %>
+  <h2>Most Likes 5 Posts</h2>
+  <%= render "posts/index", posts: @likeposts %>
+  <h2>Most Recent 5 Posts</h2>
+  <%= render "posts/index", posts: @newposts %>
+  <div class="text-right mb-5">
+    <%= link_to posts_path, class: "btn btn-success btn-lg" do %>
+      <i class="fas fa-angle-double-right"></i> All Posts
+    <% end %>
+  </div>
 <% else %>
-<h1 class="text-center mt-3" style="color:orange"><strong>Welocome to TenniSite!!</strong></h1>
-<div class="slidebar mt-4 col-8 offset-2">
-  <div class="picture"><img src="assets/picture2.jpg", class="picture"></div>
-  <div class="picture"><img src="assets/picture3.jpg", class="picture"></div>
-  <div class="picture"><img src="assets/picture1.jpg", class="picture"></div>
-  <div class="picture"><img src="assets/picture4.jpg", class="picture"></div>
-  <div class="picture"><img src="assets/picture5.jpg", class="picture"></div>
-</div>
-<h4 class="mt-4 text-center">
-  This site is a gathering place for tennis lovers.<br>
-  Let's share the excitement of tennis or your tennislife.
-</h4>
-<div class="text-center">
-  <%= link_to "About TenniSite", about_path, class: "btn btn-dark", style: "color:orange" %>
-  <%= link_to "Sign up", new_user_registration_path, class: "btn btn-dark", style: "color:yellow" %>
-  <%= link_to "Log in", new_user_session_path, class: "btn btn-dark", style: "color:pink" %>
-</div>
-<% end %>
+  <h1 class="text-center mt-3" style="color:orange"><strong>Welocome to TenniSite!!</strong></h1>
+  <div class="slidebar mt-4 col-8 offset-2">
+    <div class="picture"><img src="assets/picture2.jpg", class="picture"></div>
+    <div class="picture"><img src="assets/picture3.jpg", class="picture"></div>
+    <div class="picture"><img src="assets/picture1.jpg", class="picture"></div>
+    <div class="picture"><img src="assets/picture4.jpg", class="picture"></div>
+    <div class="picture"><img src="assets/picture5.jpg", class="picture"></div>
+  </div>
+  <h4 class="mt-4 text-center">
+    This site is a gathering place for tennis lovers.<br>
+    Let's share the excitement of tennis or your tennislife.
+  </h4>
+  <div class="text-center mt-4">
+    <strong>
+      <%= link_to "About TenniSite", about_path, class: "btn btn-dark btn-lg", style: "color:orange" %>
+      <%= link_to "Sign up", new_user_registration_path, class: "btn btn-dark btn-lg", style: "color:yellow" %>
+      <%= link_to "Log in", new_user_session_path, class: "btn btn-dark btn-lg", style: "color:pink" %>
+    </strong>
+  </div>
+  <% end %>
