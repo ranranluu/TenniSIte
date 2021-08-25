@@ -1,4 +1,9 @@
 class PostsController < ApplicationController
+
+  def new
+    @post = current_user.posts.new
+  end
+
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
@@ -14,35 +19,42 @@ class PostsController < ApplicationController
   end
 
   def index
+    if params[:post].present?
+      if params[:post].empty?
+        @posts = Post.all.order(created_at: :desc)
+      else
+        @posts = Post.where('content LIKE(?)', "%#{params[:post][:keyword]}%")
+      end
+    else
+      @posts = Post.all.order(created_at: :desc)
+    end
     @user = current_user
     @tag_list = Tag.all
-    @posts = Post.all
-    @post = current_user.posts.new
   end
 
   def edit
-    @book = Book.find(params[:id])
-    if @book.user_id == current_user.id
-      render "edit"
-    else
-      redirect_to books_path
-    end
+    @post = Post.find(params[:id])
+    @tag_list = @post.tags.pluck(:name).join(",")
   end
 
   def update
-    @book = Book.find(params[:id])
-    @book.user_id = current_user.id
-    if @book.update(book_params)
-      flash[:notice]="You have updated book successfully."
-      redirect_to book_path(@book.id)
+    @post = Post.find(params[:id])
+    @post.user_id = current_user.id
+    tag_list = params[:post][:name].split(nil)
+    if @post.update(post_params)
+      @post.save_tag(tag_list)
+      flash[:notice]="You have updated post successfully."
+      redirect_to post_path(@post.id)
     else
       render :edit
     end
+    @newpost = current_user.posts.new
   end
 
   def show
     @post = Post.find(params[:id])
     @tags = @post.tags
+    @post_comment = PostComment.new
   end
 
   def destroy

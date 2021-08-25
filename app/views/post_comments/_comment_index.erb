@@ -1,0 +1,21 @@
+<table class="table table-striped text-light">
+  <% post.post_comments.each do |post_comment| %>
+    <tr>
+      <td class="align-middle">
+        <%= attachment_image_tag post_comment.user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "50x50" %>
+        <%= post_comment.user.nickname %>
+      </td>
+      <td class="align-middle">
+        <%= post_comment.comment %>
+      </td>
+      <td class="align-middle">
+        <%= l post_comment.created_at %>
+      </td>
+      <td class="align-middle">
+        <% if post_comment.user_id == current_user.id %>
+          <%= link_to "Destroy", post_post_comment_path(post, post_comment.id), method: :delete, class: "btn btn-danger", remote: true %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>

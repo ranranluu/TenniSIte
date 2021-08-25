@@ -1,12 +1,39 @@
-<div class="container">
-  <div class="row">
-    <div>
-      <%= @post.user.nickname %>
-      <%= @post.content %>
-      <%= @post.image %>
-      <% @tags.each do |tag| %>
-        <%= tag.name %>
-      <% end %>
+<h2>Post Detail</h2>
+<div class="container-fluid">
+  <div class="row text-light">
+    <div class="mx-auto">
+      <table class="table text-light text-center">
+        <tr>
+          <td class="align-middle"><%= attachment_image_tag @post.user, :profile_image, format: 'jpeg', fallback: "no_image.jpg",size:"80x80" %></td>
+          <td class="align-middle"><%= link_to @post.user.nickname, user_path(@post.user) %></td>
+          <td class="align-middle"><%= l @post.created_at %></td>
+          <td  class="align-middle">
+            <% @tags.each do |tag| %>
+              <%= link_to tag.name, tag_posts_path(tag_id: tag.id) %><br>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td class="align-middle"><%= @post.content %></td>
+          <td class="align-middle">
+            <div id="post_<%= @post.id %>">
+              <%= render partial: 'likes/like', locals: {post:@post} %>
+            </div>
+          </td>
+          <td class="comments-count align-middle">コメント数:<%= @post.post_comments.count %></td>
+          <% if @post.user_id == current_user.id %>
+            <td><%= link_to "Edit", edit_post_path(@post), class:"btn btn-success" %></td>
+            <td><%= link_to "Destroy", post_path(@post), method: :delete, data: {confirm: "Do you really want to erase it?"}, class:"btn btn-danger" %></td>
+          <% end %>
+        </tr>
+      </table>
+      <h3>Comments on posts</h3>
+      <div class="text-center">
+        <div id="comment-index">
+          <%= render partial: 'post_comments/comment_index', locals: {post: @post} %>
+        </div>
+        <%= render partial: 'post_comments/comment_form', locals: {post: @post, post_comment: @post_comment} %>
+      </div>
     </div>
   </div>
 </div>

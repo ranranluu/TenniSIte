@@ -9,10 +9,12 @@ class UsersController < ApplicationController
     else
       @users = User.all
     end
+    @post = current_user.posts.new
   end
 
   def show
     @user = User.find(params[:id])
+    @post = current_user.posts.new
   end
 
   def edit
@@ -22,6 +24,7 @@ class UsersController < ApplicationController
     else
       redirect_to user_path(current_user)
     end
+    @post = current_user.posts.new
   end
 
   def update
@@ -32,7 +35,14 @@ class UsersController < ApplicationController
       render :edit
     end
   end
-
+  
+  def destroy
+    @user = User.find(params[:id]) 
+    @user.destroy
+    flash[:notice] = 'Your account is deleted'
+    redirect_to root_path
+  end
+  
   private
   def user_params
     params.require(:user).permit(

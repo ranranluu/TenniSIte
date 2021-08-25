@@ -1,14 +1,8 @@
+<h2>タグが<%= @tag.name %>の投稿一覧</h2>
 <div class="container">
   <div class="row">
-    <div class="col-10">
-      <h2>タグが<%= @tag.name %>の投稿一覧</h2>
-      <% @posts.each do |post| %>
-        <%= link_to post.content, post_path(post) %>
-        <%= post.image %>
-        <% post.post_tags.each do |post_tag| %>
-          <% post_tag.tag.name %>
-        <% end %>
-      <% end %>
+    <div class="col-12">
+      <%= render "posts/index", posts: @posts %>
     </div>
   </div>
 </div>

@@ -1,0 +1,26 @@
+<table class="table table-striped text-light text-center">
+  <thead>
+    <th>Post</th>
+    <th>Likes</th>
+    <th>created_at</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% posts.each do |post| %>
+    <tr>
+      <td class="align-middle"><%= post.content %></td>
+      <td class="align-middle">
+        <div id="post_<%= post.id %>">
+          <%= render partial: 'likes/like', locals: {post:post} %>
+        </div>
+      </td>
+      <td class="align-middle"><%= l post.created_at %></td>
+      <td class="align-middle">
+        <%= link_to post_path(post), class: "btn btn-primary" do %>
+          <i class="fas fa-comment-alt"></i> Detail
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

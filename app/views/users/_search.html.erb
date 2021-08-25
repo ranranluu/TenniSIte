@@ -1,0 +1,38 @@
+<table class="table table-striped text-light text-center">
+  <thead>
+    <th>PlofileImage</th>
+    <th>Nickname</th>
+    <th>Follows</th>
+    <th>Followers</th>
+    <th>Follow/Unfollow</th>
+    <th>Detail</th>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td class="align-middle"><%= attachment_image_tag user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size:"80x80" %></td>
+      <td class="align-middle"><%= user.nickname %></td>
+      <td class="align-middle"><%= user.followings.count %></td>
+      <td class="align-middle"><%= user.followers.count %></td>
+      <td class="align-middle">
+        <% if current_user != user %>
+          <% if current_user.following?(user) %>
+            <%= link_to user_relationships_path(user.id), method: :delete do %>
+              <i class="fas fa-user-times btn btn-danger"></i>
+            <% end %>
+          <% else %>
+            <%= link_to user_relationships_path(user.id), method: :post do %>
+              <i class="fas fa-user-plus btn btn-success"></i>
+            <% end %>
+          <% end %>
+        <% end %>
+      </td>
+      <td class="align-middle">
+        <%= link_to "/users/#{user.id}", class: "btn btn-primary" do %>
+          <i class="far fa-address-card"></i>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

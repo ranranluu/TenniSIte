@@ -11,83 +11,116 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   </head>
-
-  <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-info p-4">
-      <%= link_to image_tag("logo.png", class: "top_image", size: "80x80"), "/" %>
-      <a class="navbar-brand ml-3" href="/"><strong>TenniSite</strong></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <% if user_signed_in? %>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-        <%= form_with url:search_path, method: :get, local: :true do |f| %>
-            <%= f.text_field 'search[value]' %>
-            <%= f.select 'search[model]', options_for_select({"ユーザー" => "user", "投稿" => "post"}) %>
-            <%= f.select 'search[how]', options_for_select({"完全一致" => "match", "部分一致" => "partical"}) %>
-            <%= f.submit '検索' %>
-        <% end %>
+  <body>
+    <div class="main-container">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-4">
+        <%= link_to image_tag("logo.png", class: "top_image", size: "80x80"), "/" %>
+          <a class="navbar-brand ml-3" href="/"><strong>TenniSite</strong></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+              <li class="nav-link text-light">
+                <strong>Welcome, <%= current_user.nickname %> !</strong>
+              </li>
+              <li>
+                <%= link_to user_path(current_user.id), class: 'nav-link text-light' do %>
+                  <i class="far fa-user-circle"></i>Mypage
+                <% end %>
+              </li>
+              <li>
+                <%= link_to users_path, class: 'nav-link text-light' do %>
+                  <i class="fas fa-users"></i>Users
+                <% end %>
+              </li>
+              <li>
+                <%= link_to posts_path, class: 'nav-link text-light' do %>
+                  <i class="fas fa-comment-alt"></i>Posts
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_post_path, class: 'nav-link text-light' do %>
+                  <i class="fas fa-comment-medical"></i>Newpost
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light' do %>
+                  <i class="fas fa-sign-out-alt"></i>Logout
+                <% end %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to about_path, class: 'nav-link text-light' do %>
+                  <i class="fas fa-link"></i>About
+                <% end %>
+              </li>
+              <li>
+                <%= link_to user_session_path, class: 'nav-link text-light' do %>
+                  <i class="fas fa-sign-in-alt"></i>Login
+                <% end %>
+              </li>
+              <li><%= link_to 'Signup', new_user_registration_path, class: 'nav-link text-light' %></li>
+            <% end %>
+            </ul>
+          </div>
+        </nav>
+        <div class="row">
+        <% if user_signed_in? %>
+        <div class="col-2 sidebar list-group text-center ml-5">
+          <table class="table table-dark text-light">
+            <h2>Profile</h2>
+            <div class="mx-auto mb-3"><%= attachment_image_tag current_user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "200x200" %></div>
+            <tbody>
+              <tr>
+                <th>Nickname</th>
+                <th><%= current_user.nickname %></th>
+              </tr>
+              <tr>
+                <th>Introduction</th>
+                <th><%= current_user.introduction %></th>
+              </tr>
+              <tr>
+                <th>Playstyle</th>
+                <th><%= current_user.playstyle %></th>
+              </tr>
+              <tr>
+                <th>Likeplayer</th>
+                <th><%= current_user.like_player %></th>
+              </tr>
+              <tr>
+                <th>Likebrand</th>
+                <th><%= current_user.like_brand %></th>
+              </tr>
+              <tr>
+                <th>Follows</th>
+                <th><%= link_to current_user.followings.count , user_followings_path(current_user) %></th>
+              </tr>
+              <tr>
+                <th>Followers</th>
+                <th><%= link_to current_user.followers.count, user_followers_path(current_user) %></th>
+              </tr>
+            </tbody>
+          </table>
         </div>
-      <% else %>
-      <% end %>
-
-    </nav>
-    <div class="row">
-      <div class="col-3 sidebar list-group text-center">
-        <% if user_signed_in? %>
-          <li class="list-group-item"><%= link_to "ユーザー一覧", users_path %></li>
-          <li class="list-group-item"><%= link_to "フォロー一覧", user_followings_path(current_user) %></li>
-          <li class="list-group-item"><%= link_to "フォロワー一覧", user_followers_path(current_user) %></li>
-          <li class="list-group-item"><%= link_to "投稿一覧", posts_path %></li>
-          <li class="list-group-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+        <div class="col-8 ml-5">
+          <body>
+            <%= yield %>
+          </body>
+        </div>
         <% else %>
-          <li class="list-group-item"><%= link_to "ログイン", user_session_path %></li>
-          <li class="list-group-item"><%= link_to "新規登録", new_user_registration_path %></li>
-          <li class="list-group-item"><%= link_to "TenniSiteについて", about_path %></li>
+        <div class="col-8 offset-2">
+          <body>
+            <%= yield %>
+          </body>
+        </div>
         <% end %>
-        <% if user_signed_in? %>
-        <table class="table">
-          <h4>プロフィール</h4>
-          <div class="mx-auto"><%= attachment_image_tag current_user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "150x150" %></div>
-          <tbody>
-            <tr>
-              <th>nickname</th>
-              <th><%= current_user.nickname %></th>
-            </tr>
-            <tr>
-              <th>Introduction</th>
-              <th><%= current_user.introduction %></th>
-            </tr>
-            <tr>
-              <th>playstyle</th>
-              <th><%= current_user.playstyle %></th>
-            </tr>
-            <tr>
-              <th>likeplayer</th>
-              <th><%= current_user.like_player %></th>
-            </tr>
-            <tr>
-              <th>likebrand</th>
-              <th><%= current_user.like_brand %></th>
-            </tr>
-            <tr>
-              <th>follows</th>
-              <th><%= current_user.followings.count %></th>
-            </tr>
-            <tr>
-              <th>followers</th>
-              <th><%= current_user.followers.count %></th>
-            </tr>
-          </tbody>
-        </table>
-        <% end %>
-      </div>
-
-      <div class="col-8 ml-5">
-        <body>
-          <%= yield %>
-        </body>
       </div>
     </div>
   </div>
+
+  </body>
+
 </html>

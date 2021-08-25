@@ -13,7 +13,10 @@ class Post < ApplicationRecord
   has_many :tags, through: :post_tags
 
   attachment :image
-
+  
+  has_many :post_comments, dependent: :destroy
+  
+  
   def save_tag(sent_tags)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
     old_tags = current_tags - sent_tags
