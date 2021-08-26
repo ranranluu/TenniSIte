@@ -16,8 +16,8 @@
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-4">
         <%#= link_to image_tag("logo.png", class: "top_image"), "/" %>
-        <%= link_to root_path, class: "top-image" do %>
-          <%= image_tag asset_path("logo.png"), class: "top_image", size: "80x80"%>
+        <%= link_to root_path do %>
+          <%= image_tag asset_path("logo.png"), class: "logo_image" %>
         <% end %>
           <a class="navbar-brand ml-3" href="/"><strong>TenniSite</strong></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,7 +72,7 @@
         </nav>
         <div class="row">
         <% if user_signed_in? %>
-        <div class="col-2 sidebar list-group text-center ml-5">
+        <div class="col-xs-10 col-sm-2 sidebar list-group text-center ml-sm-5">
           <table class="table table-dark text-light">
             <h2>Profile</h2>
             <div class="mx-auto mb-3"><%= attachment_image_tag current_user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "200x200" %></div>
@@ -108,13 +108,13 @@
             </tbody>
           </table>
         </div>
-        <div class="col-8 ml-5">
+        <div class="col-sm-8 ml-sm-5 col-xs-12">
           <body>
             <%= yield %>
           </body>
         </div>
         <% else %>
-        <div class="col-8 offset-2">
+        <div class="col-xs-10 col-sm-8 offset-sm-2">
           <body>
             <%= yield %>
           </body>

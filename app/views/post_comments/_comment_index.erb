@@ -1,8 +1,10 @@
 <table class="table table-striped text-light">
   <% post.post_comments.each do |post_comment| %>
     <tr>
-      <td class="align-middle">
+      <td class="d-none d-sm-table-cell align-middle">
         <%= attachment_image_tag post_comment.user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "50x50" %>
+      </td>
+      <td class="align-middle">
         <%= post_comment.user.nickname %>
       </td>
       <td class="align-middle">

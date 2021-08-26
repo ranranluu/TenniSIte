@@ -2,7 +2,7 @@
   <thead>
     <th>Post</th>
     <th>Likes</th>
-    <th>created_at</th>
+    <th class="d-none d-sm-table-cell">created_at</th>
     <th></th>
   </thead>
   <tbody>
@@ -14,7 +14,7 @@
           <%= render partial: 'likes/like', locals: {post:post} %>
         </div>
       </td>
-      <td class="align-middle"><%= l post.created_at %></td>
+      <td class="d-none d-sm-table-cell align-middle"><%= l post.created_at %></td>
       <td class="align-middle">
         <%= link_to post_path(post), class: "btn btn-primary" do %>
           <i class="fas fa-comment-alt"></i> Detail

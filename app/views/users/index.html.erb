@@ -1,6 +1,6 @@
 <h2>Users</h2>
-<div class="row mx-auto">
-  <div class="search mx-auto mb-3">
+<div class="row">
+  <div class="mx-auto mb-3">
     <%= form_with model: User.new, method: :get, class: "search__form" do |f| %>
       <%= f.text_field :keyword, required: true, class: "search__form__input searchTerm", placeholder: "Search" %>
       <button type="submit" class="searchButton">
@@ -9,6 +9,8 @@
     <% end %>
   </div>
 </div>
-<div id="index">
-  <%= render "users/search", users: @users %>
+<div class="row">
+  <div id="index" class="mx-auto">
+    <%= render "users/search", users: @users %>
+  </div>
 </div>
