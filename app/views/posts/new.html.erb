@@ -2,6 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-10 offset-1">
+      <%= render "devise/shared/error_messages", resource: @post %>
       <%= form_with model: @post, local: true do |f| %>
         <div class="form-group">
           <%= f.label :Content %>

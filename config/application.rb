@@ -26,7 +26,7 @@ module Tennisite
     config.i18n.enforce_available_locales = true
 
     # デフォルトの言語設定
-    # config.i18n.default_locale = :en
+    #config.i18n.default_locale = :en
     config.i18n.default_locale = :ja
 
     config.time_zone = 'Asia/Tokyo'

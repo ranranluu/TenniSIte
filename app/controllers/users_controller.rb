@@ -1,13 +1,15 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     if params[:user].present?
       if params[:user].empty?
-        @users = User.all
+        @users = User.all.order(created_at: :desc)
       else
-        @users = User.where('nickname LIKE(?)', "%#{params[:user][:keyword]}%")
+        @users = User.where('nickname LIKE(?)', "%#{params[:user][:keyword]}%").order(created_at: :desc)
       end
     else
-      @users = User.all
+      @users = User.all.order(created_at: :desc)
     end
     @post = current_user.posts.new
   end
@@ -35,14 +37,14 @@ class UsersController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
-    @user = User.find(params[:id]) 
+    @user = User.find(params[:id])
     @user.destroy
     flash[:notice] = 'Your account is deleted'
     redirect_to root_path
   end
-  
+
   private
   def user_params
     params.require(:user).permit(

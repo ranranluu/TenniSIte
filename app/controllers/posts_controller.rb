@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
 
   def new
     @post = current_user.posts.new
@@ -12,9 +13,7 @@ class PostsController < ApplicationController
       @post.save_tag(tag_list)
       redirect_to post_path(@post)
     else
-      @user = current_user
-      @posts = Post.all
-      render :index
+      render :new
     end
   end
 
@@ -23,7 +22,7 @@ class PostsController < ApplicationController
       if params[:post].empty?
         @posts = Post.all.order(created_at: :desc)
       else
-        @posts = Post.where('content LIKE(?)', "%#{params[:post][:keyword]}%")
+        @posts = Post.where('content LIKE(?)', "%#{params[:post][:keyword]}%").order(created_at: :desc)
       end
     else
       @posts = Post.all.order(created_at: :desc)
