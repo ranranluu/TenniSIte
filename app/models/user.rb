@@ -31,5 +31,8 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
 
   has_many :post_comments, dependent: :destroy
-
+  
+  validates :email, presence: true
+  validates :nickname, presence: true
+  
 end

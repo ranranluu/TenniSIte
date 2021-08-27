@@ -17,6 +17,9 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   
   
+  validates :content, presence: true
+  
+  
   def save_tag(sent_tags)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
     old_tags = current_tags - sent_tags

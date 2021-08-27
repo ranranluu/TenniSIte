@@ -39,7 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  
+
   gem 'pry-byebug'
 end
 
@@ -54,7 +54,7 @@ group :development do
   gem 'rubocop', require: false
   gem 'rubocop-rails'
 
-  
+
 end
 
 group :test do
@@ -62,7 +62,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  #gem 'chromedriver-helper'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'faker'
