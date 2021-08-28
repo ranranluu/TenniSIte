@@ -1,6 +1,6 @@
 class SearchController < ApplicationController
   before_action :authenticate_user!
-  
+
   def search
     @model = params["search"]["model"]
     @value = params["search"]["value"]
@@ -9,6 +9,7 @@ class SearchController < ApplicationController
   end
 
   private
+
   def match(model, value)
     if model == 'user'
       User.where(nickname: value)
@@ -33,5 +34,4 @@ class SearchController < ApplicationController
       partical(model, value)
     end
   end
-
 end

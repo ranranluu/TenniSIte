@@ -42,7 +42,7 @@ class PostsController < ApplicationController
     tag_list = params[:post][:name].split(nil)
     if @post.update(post_params)
       @post.save_tag(tag_list)
-      flash[:notice]="You have updated post successfully."
+      flash[:notice] = "You have updated post successfully."
       redirect_to post_path(@post.id)
     else
       render :edit
@@ -63,15 +63,13 @@ class PostsController < ApplicationController
   end
 
   def tagsearch
-    @tag = Tag.find(params[:tag_id])  #クリックしたタグを取得
-    @posts = @tag.posts.all           #クリックしたタグに紐付けられた投稿を全て表示
+    @tag = Tag.find(params[:tag_id])  # クリックしたタグを取得
+    @posts = @tag.posts.all           # クリックしたタグに紐付けられた投稿を全て表示
   end
 
-
-
   private
+
   def post_params
     params.require(:post).permit(:content, :image)
   end
-
 end
