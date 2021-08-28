@@ -1,27 +1,30 @@
 require 'rails_helper'
 
 RSpec.describe "Userモデルのテスト", type: :model do
-  describe '#create' do
-    before do
-      @user = FactoryBot.build(:user)
-    end
+  describe 'バリデーションテスト' do
+    #before do
+      #@user = FactoryBot.build(:user)
+    #end
+    subject { user.valid? }
+
+    #let!(:other_user) { create(:user) }
+    let(:user) { build(:user) }
 
     it "nicknameが空だと登録できない" do
-      @user.nickname = nil
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Nickname can't be blank")
+      user.nickname = ''
+      is_expected.to eq false
     end
 
     it "emailが空だと登録できない" do
-      @user.email = nil
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Email can't be blank")
+      user.email = ''
+      is_expected.to eq false
     end
 
     it "passwordが空だと登録できない" do
-      @user.password = nil
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Password can't be blank")
+      user.password = ''
+      is_expected.to eq false
     end
+
+
   end
 end
