@@ -3,4 +3,5 @@ class Tag < ApplicationRecord
   has_many :posts, through: :post_tags
 
   validates :name, length: { maximum: 20 }
+  
 end
