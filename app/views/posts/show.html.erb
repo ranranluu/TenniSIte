@@ -4,6 +4,7 @@
     <div class="mx-auto">
       <table class="table text-light text-center">
         <tr>
+          <td></td>
           <td class="align-middle"><%= attachment_image_tag @post.user, :profile_image, format: 'jpeg', fallback: "no_image.jpg",size:"80x80" %></td>
           <td class="align-middle"><%= link_to @post.user.nickname, user_path(@post.user) %></td>
           <td class="d-none d-sm-table-cell align-middle"><%= l @post.created_at %></td>
@@ -12,9 +13,13 @@
               <%= link_to tag.name, tag_posts_path(tag_id: tag.id) %><br>
             <% end %>
           </td>
+          <td></td>
         </tr>
         <tr>
           <td class="align-middle"><%= @post.content %></td>
+          <% if @post.image.present? %>
+          <td class="align-middle"><%= attachment_image_tag @post, :image, format: 'jpeg', fallback: "no_image.jpg",size:"100x100" %></td>
+          <% end %>
           <td class="align-middle">
             <div id="post_<%= @post.id %>">
               <%= render partial: 'likes/like', locals: {post:@post} %>
@@ -22,8 +27,8 @@
           </td>
           <td class="comments-count align-middle">コメント数:<%= @post.post_comments.count %></td>
           <% if @post.user_id == current_user.id %>
-            <td><%= link_to "Edit", edit_post_path(@post), class:"btn btn-success" %></td>
-            <td><%= link_to "Destroy", post_path(@post), method: :delete, data: {confirm: "Do you really want to erase it?"}, class:"btn btn-danger" %></td>
+            <td class="align-middle"><%= link_to "Edit", edit_post_path(@post), class:"btn btn-success" %></td>
+            <td class="align-middle"><%= link_to "Destroy", post_path(@post), method: :delete, data: {confirm: "Do you really want to erase it?"}, class:"btn btn-danger" %></td>
           <% end %>
         </tr>
       </table>
