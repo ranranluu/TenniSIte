@@ -64,7 +64,7 @@ class PostsController < ApplicationController
 
   def tagsearch
     @tag = Tag.find(params[:tag_id])  # クリックしたタグを取得
-    @posts = @tag.posts.all           # クリックしたタグに紐付けられた投稿を全て表示
+    @posts = @tag.posts.all.order(created_at: :desc)   # クリックしたタグに紐付けられた投稿を全て表示
   end
 
   private
