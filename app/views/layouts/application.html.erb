@@ -72,53 +72,53 @@
         </nav>
         <div class="row">
         <% if user_signed_in? %>
-        <div class="col-xs-10 col-sm-2 sidebar list-group text-center ml-sm-5">
-          <table class="table table-dark text-light">
-            <h2>Profile</h2>
-            <div class="mx-auto mb-3"><%= attachment_image_tag current_user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "200x200" %></div>
-            <tbody>
-              <tr>
-                <th>Nickname</th>
-                <th><%= current_user.nickname %></th>
-              </tr>
-              <tr>
-                <th>Introduction</th>
-                <th><%= current_user.introduction %></th>
-              </tr>
-              <tr>
-                <th>Playstyle</th>
-                <th><%= current_user.playstyle %></th>
-              </tr>
-              <tr>
-                <th>Likeplayer</th>
-                <th><%= current_user.like_player %></th>
-              </tr>
-              <tr>
-                <th>Likebrand</th>
-                <th><%= current_user.like_brand %></th>
-              </tr>
-              <tr>
-                <th>Follows</th>
-                <th><%= link_to current_user.followings.count , user_followings_path(current_user) %></th>
-              </tr>
-              <tr>
-                <th>Followers</th>
-                <th><%= link_to current_user.followers.count, user_followers_path(current_user) %></th>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="col-sm-8 ml-sm-5 col-xs-12">
-          <body>
-            <%= yield %>
-          </body>
-        </div>
+          <div class="col-xs-10 col-sm-2 text-center ml-sm-5">
+            <h2 class="ml-sm-5">Profile</h2>
+            <div class="mx-auto mb-3 ml-sm-1"><%= attachment_image_tag current_user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "200x200" %></div>
+            <table class="table table-dark text-light">
+              <tbody>
+                <tr>
+                  <th>Nickname</th>
+                  <th><%= current_user.nickname %></th>
+                </tr>
+                <tr>
+                  <th>Introduction</th>
+                  <th><%= current_user.introduction %></th>
+                </tr>
+                <tr>
+                  <th>Playstyle</th>
+                  <th><%= current_user.playstyle %></th>
+                </tr>
+                <tr>
+                  <th>Likeplayer</th>
+                  <th><%= current_user.like_player %></th>
+                </tr>
+                <tr>
+                  <th>Likebrand</th>
+                  <th><%= current_user.like_brand %></th>
+                </tr>
+                <tr>
+                  <th>Follows</th>
+                  <th><%= link_to current_user.followings.count , user_followings_path(current_user) %></th>
+                </tr>
+                <tr>
+                  <th>Followers</th>
+                  <th><%= link_to current_user.followers.count, user_followers_path(current_user) %></th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-sm-8 ml-sm-5 col-xs-12">
+            <body>
+              <%= yield %>
+            </body>
+          </div>
         <% else %>
-        <div class="col-xs-10 col-sm-8 offset-sm-2">
-          <body>
-            <%= yield %>
-          </body>
-        </div>
+          <div class="col-xs-10 col-sm-8 offset-sm-2">
+            <body>
+              <%= yield %>
+            </body>
+          </div>
         <% end %>
       </div>
     </div>
