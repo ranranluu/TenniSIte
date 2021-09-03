@@ -1,4 +1,5 @@
 # TenniSite
+<img src="https://user-images.githubusercontent.com/83503907/132017837-0db26966-f8dd-4880-93f0-8fc1158df3d5.png" width="300px">
 
 ## サイト概要
 テニスが好きな人々が集まり感動を共有することで、テニス界をより盛り上げるためのサイトである。
