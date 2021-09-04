@@ -34,7 +34,7 @@ https://docs.google.com/spreadsheets/d/1WQ84v5o1wWVqQ4Pj7V9JCDtcNn7-YEzXx3f0MKHU
 https://docs.google.com/spreadsheets/d/1ToovhBkLonB-rjFnaDeEdRCV-0OIXEuXso4ieSwrUns/edit?usp=sharing
 
 ## 今後挑戦する機能
-- RSpecのテストを増やす
+- RSpecのテストを増やし（画面遷移等）、エラーをなくす
 - 多言語化の実装
 - レイアウトをより見やすくレスポンシブに
 
