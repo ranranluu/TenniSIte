@@ -24,22 +24,30 @@ describe '[STEP1] ユーザログイン前のテスト' do
         click_link 'Signup'
         expect(current_path).to eq new_user_registration_path
       end
-      # it 'Log inリンクが表示される: 左上から5番目のリンクが「Log in」である' do
-      #   log_in_link = find_all('a')[2].native.inner_text
-      #   expect(log_in_link).to include(/Login/i)
-      # end
-      # it 'Log inリンクの内容が正しい' do
-      #   log_in_link = find_all('a')[2].native.inner_text
-      #   expect(page).to have_link log_in_link, href: new_user_session_path
-      # end
-      # it 'Sign Upリンクが表示される: 左上から6番目のリンクが「Sign Up」である' do
-      #   sign_up_link = find_all('a')[3].native.inner_text
-      #   expect(sign_up_link).to include(/Signup/i)
-      # end
-      # it 'Sign Upリンクの内容が正しい' do
-      #   sign_up_link = find_all('a')[3].native.inner_text
-      #   expect(page).to have_link sign_up_link, href: new_user_registration_path
-      # end
+
+      it 'Aboutリンクが表示される: 左上から2番目のリンクが「About」である' do
+        about_link = find_all('a')[2].native.inner_text
+        expect(about_link).to match(/About/i)
+      end
+      it 'Aboutリンクの内容が正しい' do
+        expect(page).to have_link 'About', href: about_path
+      end
+
+      it 'Log inリンクが表示される: 左上から3番目のリンクが「Login」である' do
+        log_in_link = find_all('a')[3].native.inner_text
+        expect(log_in_link).to match(/Login/i)
+      end
+      it 'Log inリンクの内容が正しい' do
+        expect(page).to have_link 'Login', href: new_user_session_path
+      end
+
+      it 'Sign Upリンクが表示される: 左上から4番目のリンクが「Signup」である' do
+        sign_up_link = find_all('a')[4].native.inner_text
+        expect(sign_up_link).to match(/Signup/i)
+      end
+      it 'Sign Upリンクの内容が正しい' do
+        expect(page).to have_link 'Signup', href: new_user_registration_path
+      end
     end
   end
 end
