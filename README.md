@@ -23,15 +23,10 @@
 テニスについて何か質問があったり解決方法を募りたい時
 
 ## 設計書（随時更新中）
-### [ER図]
-https://drive.google.com/file/d/1RguOnPQDNG0WFFsFocPM2cI8BVDQZ8V9/view?usp=sharing
-### [テーブル定義書]
-https://docs.google.com/spreadsheets/d/19ToLIJSuaonNKroh9ot57-weFrwtqemakalD-uagVdg/edit?usp=sharing
-### [詳細設定]
-https://docs.google.com/spreadsheets/d/1WQ84v5o1wWVqQ4Pj7V9JCDtcNn7-YEzXx3f0MKHUiZo/edit?usp=sharing
-
-## チャレンジ要素一覧
-https://docs.google.com/spreadsheets/d/1ToovhBkLonB-rjFnaDeEdRCV-0OIXEuXso4ieSwrUns/edit?usp=sharing
+- [ER図](https://drive.google.com/file/d/1RguOnPQDNG0WFFsFocPM2cI8BVDQZ8V9/view?usp=sharing)
+- [テーブル定義書](https://docs.google.com/spreadsheets/d/19ToLIJSuaonNKroh9ot57-weFrwtqemakalD-uagVdg/edit?usp=sharing)
+- [詳細設定](https://docs.google.com/spreadsheets/d/1WQ84v5o1wWVqQ4Pj7V9JCDtcNn7-YEzXx3f0MKHUiZo/edit?usp=sharing)
+- [チャレンジ要素一覧](https://docs.google.com/spreadsheets/d/1ToovhBkLonB-rjFnaDeEdRCV-0OIXEuXso4ieSwrUns/edit?usp=sharing)
 
 ## 今後挑戦する機能
 - RSpecのテストを増やし（画面遷移等）、エラーをなくす
@@ -39,13 +34,13 @@ https://docs.google.com/spreadsheets/d/1ToovhBkLonB-rjFnaDeEdRCV-0OIXEuXso4ieSwr
 - レイアウトをより見やすくレスポンシブに
 
 ## 開発環境
-- OS：Linux(CentOS)
+- OS:Amazon Linux 2 
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
 ## 使用素材
-- Hatchfulの無料ロゴメーカー(https://hatchful.shopify.com/ja/)
-- photo-AC（https://www.photo-ac.com/）
-- O-DAN(https://o-dan.net/ja/)
+- [Hatchfulの無料ロゴメーカー](https://hatchful.shopify.com/ja/)
+- [photo-AC](https://www.photo-ac.com/)
+- [O-DAN](https://o-dan.net/ja/)
