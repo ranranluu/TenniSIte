@@ -192,6 +192,81 @@ describe '[STEP1] ユーザログイン前のテスト' do
         expect(current_path).to eq '/users/' + user.id.to_s
       end
     end
+    
+    context 'ログイン失敗のテスト' do
+      before do
+        fill_in 'user[email]', with: ''
+        fill_in 'user[password]', with: ''
+        click_button 'Log in'
+      end
 
+      it 'ログインに失敗し、ログイン画面にリダイレクトされる' do
+        expect(current_path).to eq '/users/sign_in'
+      end
+    end
+  end
+  
+  describe 'ヘッダーのテスト: ログインしている場合' do
+    let(:user) { create(:user) }
+
+    before do
+      visit new_user_session_path
+      fill_in 'user[email]', with: user.email
+      fill_in 'user[password]', with: user.password
+      click_button 'Log in'
+    end
+
+    context 'ヘッダーの表示を確認' do
+      it 'タイトルが表示される' do
+        expect(page).to have_content 'TenniSite'
+      end
+      it 'TenniSiteリンクが表示される: 左上から1番目のリンクが「TenniSite」である' do
+        home_link = find_all('a')[1].native.inner_text
+        expect(home_link).to match(/TenniSite/i)
+      end
+      it 'Mypageリンクが表示される: 左上から2番目のリンクが「Mypage」である' do
+        mypage_link = find_all('a')[2].native.inner_text
+        expect(mypage_link).to match(/Mypage/i)
+      end
+      it 'Usersリンクが表示される: 左上から3番目のリンクが「Users」である' do
+        users_link = find_all('a')[3].native.inner_text
+        expect(users_link).to match(/Users/i)
+      end
+      it 'Postsリンクが表示される: 左上から4番目のリンクが「Posts」である' do
+        posts_link = find_all('a')[4].native.inner_text
+        expect(posts_link).to match(/Posts/i)
+      end
+      it 'Newpostリンクが表示される: 左上から5番目のリンクが「Newpost」である' do
+        posts_link = find_all('a')[5].native.inner_text
+        expect(posts_link).to match(/Newpost/i)
+      end
+      it 'Logoutリンクが表示される: 左上から6番目のリンクが「Logout」である' do
+        logout_link = find_all('a')[6].native.inner_text
+        expect(logout_link).to match(/Logout/i)
+      end
+    end
+  end
+
+  describe 'ユーザログアウトのテスト' do
+    let(:user) { create(:user) }
+
+    before do
+      visit new_user_session_path
+      fill_in 'user[email]', with: user.email
+      fill_in 'user[password]', with: user.password
+      click_button 'Log in'
+      logout_link = find_all('a')[6].native.inner_text
+      logout_link = logout_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
+      click_link logout_link
+    end
+
+    context 'ログアウト機能のテスト' do
+      it '正しくログアウトできている: ログアウト後のリダイレクト先においてAbout画面へのリンクが存在する' do
+        expect(page).to have_link '', href: '/about'
+      end
+      it 'ログアウト後のリダイレクト先が、トップになっている' do
+        expect(current_path).to eq '/'
+      end
+    end
   end
 end
