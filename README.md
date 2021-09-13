@@ -34,7 +34,7 @@
 - レイアウトをより見やすくレスポンシブに
 
 ## 開発環境
-- OS:Amazon Linux 2 
+- OS : Amazon Linux 2 
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
