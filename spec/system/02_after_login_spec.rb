@@ -86,99 +86,99 @@ describe '[STEP2] ユーザログイン後のテスト' do
     end
   end
 
-  # describe '自分の投稿詳細画面のテスト' do
-  #   before do
-  #     visit post_path(post)
-  #   end
+  describe '自分の投稿詳細画面のテスト' do
+    before do
+      visit post_path(post)
+    end
 
-  #   context '表示内容の確認' do
-  #     it 'URLが正しい' do
-  #       expect(current_path).to eq '/posts/' + book.id.to_s
-  #     end
-  #     it '「Post Detail」と表示される' do
-  #       expect(page).to have_content 'Post Detail'
-  #     end
-  #     it 'ユーザ画像・名前のリンク先が正しい' do
-  #       expect(page).to have_link post.user.name, href: user_path(post.user)
-  #     end
-  #     it '投稿のcontentが表示される' do
-  #       expect(page).to have_content post.content
-  #     end
+    context '表示内容の確認' do
+      it 'URLが正しい' do
+        expect(current_path).to eq '/posts/' + post.id.to_s
+      end
+      it '「Post Detail」と表示される' do
+        expect(page).to have_content 'Post Detail'
+      end
+      it 'ユーザ画像・名前のリンク先が正しい' do
+        expect(page).to have_link post.user.nickname, href: user_path(post.user)
+      end
+      it '投稿のcontentが表示される' do
+        expect(page).to have_content post.content
+      end
 
-  #     it '投稿の編集リンクが表示される' do
-  #       expect(page).to have_link 'Edit', href: edit_post_path(post)
-  #     end
-  #     it '投稿の削除リンクが表示される' do
-  #       expect(page).to have_link 'Destroy', href: post_path(post)
-  #     end
-  #   end
+      it '投稿の編集リンクが表示される' do
+        expect(page).to have_link 'Edit', href: edit_post_path(post)
+      end
+      it '投稿の削除リンクが表示される' do
+        expect(page).to have_link 'Destroy', href: post_path(post)
+      end
+    end
 
-  #   context 'サイドバーの確認' do
-  #     it '自分の情報が表示される' do
-  #       expect(page).to have_content user.nickname
-  #       expect(page).to have_content user.introduction
-  #       expect(page).to have_content user.playstyle
-  #       expect(page).to have_content user.like_player
-  #       expect(page).to have_content user.like_brand
-  #     end
-  #   end
+    context 'サイドバーの確認' do
+      it '自分の情報が表示される' do
+        expect(page).to have_content user.nickname
+        expect(page).to have_content user.introduction
+        expect(page).to have_content user.playstyle
+        expect(page).to have_content user.like_player
+        expect(page).to have_content user.like_brand
+      end
+    end
 
-  #   context '編集リンクのテスト' do
-  #     it '編集画面に遷移する' do
-  #       click_link 'Edit'
-  #       expect(current_path).to eq '/posts/' + post.id.to_s + '/edit'
-  #     end
-  #   end
+    context '編集リンクのテスト' do
+      it '編集画面に遷移する' do
+        click_link 'Edit'
+        expect(current_path).to eq '/posts/' + post.id.to_s + '/edit'
+      end
+    end
 
-  #   context '削除リンクのテスト' do
-  #     before do
-  #       click_link 'Destroy'
-  #     end
+    context '削除リンクのテスト' do
+      before do
+        click_link 'Destroy'
+      end
 
-  #     it '正しく削除される' do
-  #       expect(Post.where(id: post.id).count).to eq 0
-  #     end
-  #     it 'リダイレクト先が、投稿一覧画面になっている' do
-  #       expect(current_path).to eq '/posts'
-  #     end
-  #   end
-  # end
+      it '正しく削除される' do
+        expect(Post.where(id: post.id).count).to eq 0
+      end
+      it 'リダイレクト先が、投稿一覧画面になっている' do
+        expect(current_path).to eq '/posts'
+      end
+    end
+  end
 
-  # describe '自分の投稿編集画面のテスト' do
-  #   before do
-  #     visit edit_post_path(post)
-  #   end
+  describe '自分の投稿編集画面のテスト' do
+    before do
+      visit edit_post_path(post)
+    end
 
-  #   context '表示の確認' do
-  #     it 'URLが正しい' do
-  #       expect(current_path).to eq '/posts/' + post.id.to_s + '/edit'
-  #     end
-  #     it '「Editing post」と表示される' do
-  #       expect(page).to have_content 'Editing Book'
-  #     end
-  #     it 'content編集フォームが表示される' do
-  #       expect(page).to have_field 'post[content]', with: post.content
-  #     end
-  #     it 'Update postボタンが表示される' do
-  #       expect(page).to have_button 'Update Post'
-  #     end
-  #   end
+    context '表示の確認' do
+      it 'URLが正しい' do
+        expect(current_path).to eq '/posts/' + post.id.to_s + '/edit'
+      end
+      it '「Editing post」と表示される' do
+        expect(page).to have_content 'Update Post'
+      end
+      it 'content編集フォームが表示される' do
+        expect(page).to have_field 'post[content]', with: post.content
+      end
+      it 'Update postボタンが表示される' do
+        expect(page).to have_button 'Update Post'
+      end
+    end
 
-  #   context '編集成功のテスト' do
-  #     before do
-  #       @post_old_content = post.content
-  #       fill_in 'post[content]', with: Faker::Lorem.characters(number: 4)
-  #       click_button 'Update Post'
-  #     end
+    context '編集成功のテスト' do
+      before do
+        @post_old_content = post.content
+        fill_in 'post[content]', with: Faker::Lorem.characters(number: 4)
+        click_button 'Update Post'
+      end
 
-  #     it 'contentが正しく更新される' do
-  #       expect(post.reload.content).not_to eq @post_old_content
-  #     end
+      it 'contentが正しく更新される' do
+        expect(post.reload.content).not_to eq @post_old_content
+      end
 
-  #     it 'リダイレクト先が、更新した投稿の詳細画面になっている' do
-  #       expect(current_path).to eq '/posts/' + post.id.to_s
-  #       expect(page).to have_content 'Post Detail'
-  #     end
-  #   end
-  # end
+      it 'リダイレクト先が、更新した投稿の詳細画面になっている' do
+        expect(current_path).to eq '/posts/' + post.id.to_s
+        expect(page).to have_content 'Post Detail'
+      end
+    end
+  end
 end
