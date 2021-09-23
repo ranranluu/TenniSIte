@@ -15,7 +15,6 @@
     <div class="main-container">
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-4">
-        <%#= link_to image_tag("logo.png", class: "top_image"), "/" %>
         <%= link_to root_path do %>
           <%= image_tag asset_path("logo.png"), class: "logo_image" %>
         <% end %>
@@ -72,8 +71,8 @@
         </nav>
         <div class="row">
         <% if user_signed_in? %>
-          <div class="col-xs-10 col-sm-2 text-center ml-sm-5">
-            <h2 class="ml-sm-5">Profile</h2>
+          <div class="col-xs-10 col-md-2 offset-md-1 text-center">
+            <h2 class="ml-md-5">Profile</h2>
             <div class="mx-auto mb-3 ml-sm-1"><%= attachment_image_tag current_user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "200x200" %></div>
             <table class="table table-dark text-light">
               <tbody>
@@ -108,7 +107,7 @@
               </tbody>
             </table>
           </div>
-          <div class="col-sm-8 ml-sm-5 col-xs-12">
+          <div class="col-sm-12 col-md-5 offset-md-2 col-lg-7 offset-lg-1">
             <body>
               <%= yield %>
             </body>
