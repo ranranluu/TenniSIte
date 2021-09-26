@@ -1,5 +1,5 @@
 # TenniSite
-<img src="https://user-images.githubusercontent.com/83503907/132017837-0db26966-f8dd-4880-93f0-8fc1158df3d5.png" width="300px">
+<img src="https://user-images.githubusercontent.com/83503907/132017837-0db26966-f8dd-4880-93f0-8fc1158df3d5.png" width="２５０px">
 
 ## サイト概要
 テニスが好きな人々が集まり感動を共有することで、テニス界をより盛り上げるためのサイトである。
@@ -30,7 +30,7 @@
 
 ## 今後挑戦する機能
 - RSpecのテストを増やし（画面遷移等）、エラーをなくす
-…ログイン前のテスト終了
+…ログイン前のテスト終了、ログイン中のテスト現在追加中！
 - 多言語化の実装
 - レイアウトをより見やすくレスポンシブに→調整完了!
 
