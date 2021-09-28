@@ -181,4 +181,78 @@ describe '[STEP2] ユーザログイン後のテスト' do
       end
     end
   end
+
+  describe 'ユーザ一覧画面のテスト' do
+    before do
+      visit users_path
+    end
+
+    context '表示内容の確認' do
+      it 'URLが正しい' do
+        expect(current_path).to eq '/users'
+      end
+      it '自分のニックネームが表示される' do
+        expect(page).to have_content user.nickname
+      end
+      it '自分のshowリンクが表示される' do
+        expect(page).to have_link '', href: user_path(user)
+      end
+    end
+  end
+  
+  describe '自分のユーザ詳細画面のテスト' do
+    before do
+      visit user_path(user)
+    end
+
+    context '表示の確認' do
+      it 'URLが正しい' do
+        expect(current_path).to eq '/users/' + user.id.to_s
+      end
+    end
+  end
+  
+  describe '自分のユーザ情報編集画面のテスト' do
+    before do
+      visit edit_user_path(user)
+    end
+
+    context '表示の確認' do
+      it 'URLが正しい' do
+        expect(current_path).to eq '/users/' + user.id.to_s + '/edit'
+      end
+      it '名前編集フォームに自分の名前が表示される' do
+        expect(page).to have_field 'user[nickname]', with: user.nickname
+      end
+      it '画像編集フォームが表示される' do
+        expect(page).to have_field 'user[profile_image]'
+      end
+      it '自己紹介編集フォームに自分の自己紹介文が表示される' do
+        expect(page).to have_field 'user[introduction]', with: user.introduction
+      end
+      it 'Update Userボタンが表示される' do
+        expect(page).to have_button 'Update User'
+      end
+    end
+
+    context '更新成功のテスト' do
+      before do
+        @user_old_nickname = user.nickname
+        @user_old_introduction = user.introduction
+        fill_in 'user[nickname]', with: Faker::Lorem.characters(number: 9)
+        fill_in 'user[introduction]', with: Faker::Lorem.characters(number: 19)
+        click_button 'Update User'
+      end
+
+      it 'nameが正しく更新される' do
+        expect(user.reload.nickname).not_to eq @user_old_name
+      end
+      it 'introductionが正しく更新される' do
+        expect(user.reload.introduction).not_to eq @user_old_intrpduction
+      end
+      it 'リダイレクト先が、自分のユーザ詳細画面になっている' do
+        expect(current_path).to eq '/users/' + user.id.to_s
+      end
+    end
+  end
 end
