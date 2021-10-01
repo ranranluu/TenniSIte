@@ -245,7 +245,7 @@ describe '[STEP2] ユーザログイン後のテスト' do
       end
 
       it 'nameが正しく更新される' do
-        expect(user.reload.nickname).not_to eq @user_old_name
+        expect(user.reload.nickname).not_to eq @user_old_nickname
       end
       it 'introductionが正しく更新される' do
         expect(user.reload.introduction).not_to eq @user_old_intrpduction
