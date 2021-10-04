@@ -163,6 +163,16 @@ describe '[STEP2] ユーザログイン後のテスト' do
         expect(page).to have_button 'Update Post'
       end
     end
+    
+    context 'サイドバーの確認' do
+      it '自分の情報が表示される' do
+        expect(page).to have_content user.nickname
+        expect(page).to have_content user.introduction
+        expect(page).to have_content user.playstyle
+        expect(page).to have_content user.like_player
+        expect(page).to have_content user.like_brand
+      end
+    end
 
     context '編集成功のテスト' do
       before do
